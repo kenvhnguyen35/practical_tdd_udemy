@@ -41,7 +41,7 @@ public class ValidateISBNTest {
     }
 
     @Test(expected = NumberFormatException.class)
-    public void ninedigitsIsbnAreNotAllowed() {
+    public void nineDigitsIsbnAreNotAllowed() {
         ValidateISBN validatorISBN = new ValidateISBN();
         validatorISBN.checkISBN("123456789");
     }
