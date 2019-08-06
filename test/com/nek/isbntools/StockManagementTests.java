@@ -36,8 +36,8 @@ public class StockManagementTests {
 
         stockManager.getLocatorCode(isbn);
 
-        verify(fakeDatabaseService, times(1)).lookUp(isbn);
-        verify(fakeWebService, times(0)).lookUp(anyString());
+        verify(fakeDatabaseService).lookUp(isbn);
+        verify(fakeWebService, never()).lookUp(anyString());
     }
 
     @Test
@@ -55,7 +55,7 @@ public class StockManagementTests {
 
         stockManager.getLocatorCode(isbn);
 
-        verify(fakeDatabaseService, times(1)).lookUp(isbn); // verify instead of assert
-        verify(fakeWebService, times(1)).lookUp(isbn);
+        verify(fakeDatabaseService).lookUp(isbn); // verify instead of assert
+        verify(fakeWebService).lookUp(isbn);
     }
 }
