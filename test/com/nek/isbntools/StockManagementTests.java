@@ -8,11 +8,13 @@ import static org.junit.Assert.assertEquals;
 public class StockManagementTests {
     @Test
     public void testCanGetACorrectLocatorCode() {
-        ExternalISBNDataService fakeService = (isbn) -> new Book(isbn, "Of Mice And Men", "J. Steinbeck"); // This is a stub
+        ExternalISBNDataService fakeWebService = (isbn) -> new Book(isbn, "Of Mice And Men", "J. Steinbeck"); // This is a stub
+        ExternalISBNDataService fakeDatabaseService = (isbn) -> null;
 
         String isbn = "0140177396";
         StockManager stockManager = new StockManager();
-        stockManager.setExternalService(fakeService);
+        stockManager.setExternalWebService(fakeWebService);
+        stockManager.setDatabaseService(fakeDatabaseService);
         String locatorCode = stockManager.getLocatorCode(isbn);
         assertEquals("7396J4", locatorCode);
     }
