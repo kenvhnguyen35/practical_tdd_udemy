@@ -9,13 +9,16 @@ import static org.mockito.Mockito.*;
 public class StockManagementTests {
     @Test
     public void testCanGetACorrectLocatorCode() {
-        ExternalISBNDataService fakeWebService = (isbn) -> new Book(isbn, "Of Mice And Men", "J. Steinbeck"); // This is a stub
-        ExternalISBNDataService fakeDatabaseService = (isbn) -> null;
+        ExternalISBNDataService fakeWebService = mock(ExternalISBNDataService.class);
+        ExternalISBNDataService fakeDatabaseService = mock(ExternalISBNDataService.class);
 
         String isbn = "0140177396";
         StockManager stockManager = new StockManager();
         stockManager.setExternalWebService(fakeWebService);
         stockManager.setDatabaseService(fakeDatabaseService);
+
+        when(fakeDatabaseService.lookUp(anyString())).thenReturn(null);
+        when(fakeWebService.lookUp(isbn)).thenReturn(new Book(isbn, "Of Mice And Men", "J. Steinbeck"));
 
         String locatorCode = stockManager.getLocatorCode(isbn);
 
