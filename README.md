@@ -12,3 +12,6 @@
 * replace smt that you are not interested in testing -> ignore it your test
 * also created by Mockito as a mock and we need not to imnplement anything
 * only mock(), no when().thenReturns()
+# Tautologies
+* using the same logic of your test in your code
+* rule: test should not have logic, only examples and expected outcomes
